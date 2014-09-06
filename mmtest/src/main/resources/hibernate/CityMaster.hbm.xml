@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="com.mm.test.model.entity.CityMaster" table="CityMaster" catalog="cb_weatherinfo">
+        <id name="CityId" type="java.lang.int">
+            <column name="CityId" />
+            <generator class="identity" />
+        </id>
+        <property name="CityName" type="java.lang.String">
+            <column name="CityName" length="30" />
+        </property>
+        <property name="Country" type="java.lang.String">
+            <column name="Country" length="20" />
+        </property>
+        <set name="CityWeather" table="CityWeather" fetch="select">
+			<key>
+				<column name="CityId" not-null="true"></column>
+			</key>
+			<one-to-many class="CityWeather"/>
+		</set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="com.mm.test.model.entity.CityWeather" table="CityWeather" catalog="cb_weatherinfo">
+        <id name="WeatherDateId" type="java.lang.int">
+            <column name="WeatherDateId" />
+            <generator class="identity" />
+        </id>
+        <property name="CityId" type="java.lang.int">
+            <column name="CityId" />
+        </property>
+        
+        <property name="WeatherDate" type="java.util.Date">
+            <column name="WeatherDate" />
+        </property>
+        <property name="Latitude" type="java.lang.float">
+            <column name="Latitude" />
+        </property>
+        <property name="Longitude" type="java.lang.float">
+            <column name="Longitude" />
+        </property>
+        <property name="Temperature" type="java.lang.float">
+            <column name="Temperature" />
+        </property>
+        <property name="TemperatureMin" type="java.lang.float">
+            <column name="TemperatureMin" />
+        </property>
+        <property name="TemperatureMax" type="java.lang.float">
+            <column name="TemperatureMax" />
+        </property>
+        <property name="Sunrise" type="java.lang.String">
+            <column name="Sunrise" length="20" />
+        </property>
+        <property name="Sunset" type="java.lang.String">
+            <column name="Sunset" length="20" />
+        </property>
+        
+        <set name="weatherdescription" table="WeatherDescription" fetch="select">
+			<key>
+				<column name="WeatherDateId" not-null="true"></column>
+			</key>
+			<one-to-many class="WeatherDescription"/>
+		</set>
+    </class>
+        
+</hibernate-mapping>
